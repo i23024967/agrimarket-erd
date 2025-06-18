@@ -23,18 +23,18 @@ $subscription = $conn->query("
     LIMIT 1
 ")->fetch_assoc();
 
-// Get vendor name
-$vendorQuery = $conn->prepare("
-    SELECT u.name 
-    FROM vendors v 
-    JOIN users u ON v.user_id = u.user_id 
-    WHERE v.vendor_id = ?
-");
-$vendorQuery->bind_param("i", $vendor_id);
-$vendorQuery->execute();
-$vendorResult = $vendorQuery->get_result();
-$vendorRow = $vendorResult->fetch_assoc();
-$vendor_name = "back, " . $vendorRow['name'] ?? 'to Vendor Dashboard';
+// // Get vendor name
+// $vendorQuery = $conn->prepare("
+//     SELECT u.name 
+//     FROM vendors v 
+//     JOIN users u ON v.user_id = u.user_id 
+//     WHERE v.vendor_id = ?
+// ");
+// $vendorQuery->bind_param("i", $vendor_id);
+// $vendorQuery->execute();
+// $vendorResult = $vendorQuery->get_result();
+// $vendorRow = $vendorResult->fetch_assoc();
+// $vendor_name = "back, " . $vendorRow['name'] ?? 'to Vendor Dashboard';
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,8 @@ $vendor_name = "back, " . $vendorRow['name'] ?? 'to Vendor Dashboard';
 <body>
 
 <!-- To prevent any potential HTML injection if the name contains special characters (e.g., <, &, etc.). -->
-<h1>Welcome <?= htmlspecialchars($vendor_name) ?></h1>
+<!-- <h1>Welcome <?= htmlspecialchars($vendor_name) ?></h1> -->
+<?php include 'header.php'; ?>
 
 <!-- Summary Cards -->
 <div class="card"><h3>🛒 Products</h3><p><?= $productCount ?></p></div>
